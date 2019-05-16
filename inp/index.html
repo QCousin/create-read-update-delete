@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-clock>
+        <div class="btn">
+            <input type="text" value="" v-model="name" placeholder="sdit me">
+            <select name="" id="" v-model="sex">
+                <option :value="item" v-for="(item,index) in sexArr">{{item}}</option>
+            </select>
+
+            <button @click="inpfn">新增</button>
+
+        </div>
+
+        <div class="list">
+            <p v-for="(item,index) in arr" v-if="item.flag">
+                <span>Message name is:{{item.name}}</span>
+                <span>Message age is:{{item.sex}}</span>
+                <button @click="findfn(item)">查询</button>
+                <button @click="deltfn(index)">删除</button>
+            </p>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                name: "",
+                sex: "男",
+                arr: [],
+                sexArr: ["男", "女"]
+            },
+            methods: {
+                inpfn() {
+                    this.arr.push({
+                        name: this.name,
+                        sex: this.sex,
+                        flag: true,
+                    })
+
+                },
+                findfn(obj) {
+                    document.write(obj.name + obj.sex)
+                },
+                deltfn(ind) {
+                    // this.arr.splice(ind, 1)
+                    this.arr[ind].flag = false;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
